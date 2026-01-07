@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Simran</title>
+    <style>
+        :root {
+            --primary: #ff6b6b;
+            --secondary: #feca57;
+            --accent: #48dbfb;
+            --bg: #f0f2f5;
+        }
+
+        body {
+            background-image: url(bg.jpg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: var(--bg);
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+
+        .card {
+            background: rgb(255, 197, 197);
+            width: 340px;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            text-align: center;
+            position: relative;
+            transition: transform 0.3s ease;
+            z-index: 10;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .cake {
+            font-size: 70px;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            color: var(--primary);
+            margin: 10px 0 5px 0;
+            font-size: 1.8rem;
+        }
+
+        /* The Name Input inside the card */
+        .name-input {
+            border: none;
+            border-bottom: 2px dashed var(--accent);
+            padding: 5px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent);
+            text-align: center;
+            width: 80%;
+            outline: none;
+            margin-bottom: 20px;
+            transition: border-color 0.3s;
+        }
+
+        .name-input:focus {
+            border-bottom-style: solid;
+            color: var(--primary);
+        }
+
+        p {
+            color: #57606f;
+            line-height: 1.5;
+            margin-bottom: 30px;
+        }
+
+        .btn-celebrate {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-celebrate:hover {
+            background: #ee5253;
+        }
+
+        /* Confetti */
+        .confetti {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            top: -10px;
+        }
+
+        @keyframes fall {
+            to { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <div class="cake">🎂</div>
+        <h1>Happy Birthday,</h1>
+        
+        <input type="text" class="name-input" placeholder="Enter Name" value="Simran">
+        
+        <div class="message-body">
+                <p>Wishing you a wonderful day filled with celebration and joy! 
+                May this new chapter of your life be filled with endless possibilities, 
+                unforgettable moments, and the courage to chase all your dreams.</p>
+            </div>
+        
+        <button class="btn-celebrate" onclick="burst()">Celebrate!</button>
+    </div>
+
+    <script>
+        function burst() {
+            var ado = new Audio('HAPPY BIRTHDAY INSTRUMENTAL.mp3');
+            ado.play();
+            const colors = ['#ff6b6b', '#feca57', '#48dbfb', '#1dd1a1', '#ff9ff3'];
+            
+            for (let i = 0; i < 500; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                
+                const duration = Math.random() * 2 + 3;
+                confetti.style.animation = `fall ${duration}s linear forwards`;
+                
+                document.body.appendChild(confetti);
+                setTimeout(() => confetti.remove(), duration * 1000);
+            }
+        }
+    </script>
+</body>
+</html>
